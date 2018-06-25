@@ -55,9 +55,11 @@ $(document).ready(function($) {
             var $container = $(this).parents()[1]
             console.log($($container).hasClass("elevated"))
             if ($($container).hasClass("elevated")) {
+                sessionStorage.removeItem($id)
                 sessionStorage.setItem($id, "true")
             } else {
                 sessionStorage.removeItem($id)
+                sessionStorage.setItem($id, "false")
             }
         })
     })
