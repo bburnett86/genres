@@ -1,0 +1,45 @@
+<div class = "container">
+    <div class = "nav">
+        <p class = "header-text" id ="top-left">
+            what genre of music do you make?
+        </p>
+    </div>
+    <table>
+        <tr>
+            <% finish_table = @genres.length % 3 %>
+            <% index = 1%>
+            <% @genres.each do |genre| %>
+                <td>
+                    <div class = "image-container">
+                        <%= image_tag(genre.image, class: 'image').html_safe%>
+                        <div class = "total-image-text-container">
+                            <%= content_tag(:div, content_tag(:a, genre.name, href: "#", class: "image-text", id: genre.id), class: "image-container")%>
+                        </div>
+                    </div>
+                </td>
+                <% index += 1%>
+                <% if  index != 1 && index % 3 == 1 %>
+                    <tr>
+                    </tr>
+                <% end %>
+            <% end %>
+            <% if finish_table != 0 %>
+                <% finish_table.times do |table_unit| %>
+                    <td>
+                    </td>
+                <% end%>
+            <% end %>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+                <div class = "footer">
+                    <%= content_tag(:a, 'choose', href: "#", class: "header-text", id: "post")%>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
