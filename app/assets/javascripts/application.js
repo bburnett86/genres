@@ -14,3 +14,56 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require_tree .
+
+$(document).ready(function($) {
+    $("table").find($(".image-text")).each(function() {
+        if (sessionStorage.getItem($(this).attr("id"))) {
+            var $id = $(this).attr("id")
+            var $appender = $("#" + $id).parents()[1]
+            $($(this).parents()[1]).addClass("elevated")
+            var request = $.ajax({
+                url: "/genres/" + $id,
+                method: "GET"
+            });
+            request.done(function(definition) {
+                $($appender).append(definition)
+            });
+        }
+    });
+    $(".image-text").click(function() {
+        var $this = $(this);
+        var $container = $(this).parents()[1]
+        var parents = $(this).parents()
+        var $id = $this.attr("id")
+        if ($($container).hasClass("elevated")) {
+            $($container).children()[1].remove();
+            $($container).removeClass("elevated")
+        } else {
+            $($container).addClass("elevated")
+            var $appender = $("#" + $id).parents()[1]
+            var request = $.ajax({
+                url: "/genres/" + $id,
+                method: "GET"
+            });
+            request.done(function(definition) {
+                $($appender).append(definition)
+            });
+        }
+    });
+    $("#post").click(function() {
+        $("table").find($(".image-text")).each(function() {
+            var $id = $(this).attr("id")
+            var $container = $(this).parents()[1]
+            console.log($($container).hasClass("elevated"))
+            if ($($container).hasClass("elevated")) {
+                console.log("Hi")
+                console.log($id)
+                sessionStorage.setItem($id, "true")
+            } else {
+                console.log("Bye")
+                console.log($id)
+                sessionStorage.removeItem($id)
+            }
+        })
+    })
+});

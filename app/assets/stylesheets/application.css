@@ -35,7 +35,14 @@
     font-weight: 300;
 }
 
-.image-container {
+.definition {
+    opacity: 80;
+    color: black;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.text-container {
     position: relative;
     text-align: center;
 }
@@ -43,17 +50,18 @@
 .total-image-text-container {
     position: absolute;
     left: 50%;
-    bottom: -3.47%;
+    bottom: -4%;
     transform: translate(-50%, -50%);
     width: 93.3%;
     background-color: gray;
     opacity: .8;
 }
 
-.total-image-text-container .elevated {
+.total-image-text-container.elevated {
     position: absolute;
     left: 50%;
-    bottom: 50%;
+    bottom: -36%;
+    height: 80%;
     transform: translate(-50%, -50%);
     width: 93.3%;
     background-color: gray;
