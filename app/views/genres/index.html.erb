@@ -10,10 +10,10 @@
             <% index = 1%>
             <% @genres.each do |genre| %>
                 <td>
-                    <div class = "image-container">
+                    <div class = "text-container">
                         <%= image_tag(genre.image, class: 'image').html_safe%>
                         <div class = "total-image-text-container">
-                            <%= content_tag(:div, content_tag(:a, genre.name, href: "#", class: "image-text", id: genre.id), class: "image-container")%>
+                            <%= content_tag(:div, content_tag(:a, genre.name, href: "#", class: "image-text", id: genre.id), class: "text-container")%>
                         </div>
                     </div>
                 </td>
