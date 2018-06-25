@@ -19,14 +19,14 @@ $(document).ready(function($) {
     $("table").find($(".image-text")).each(function() {
         if (sessionStorage.getItem($(this).attr("id"))) {
             var $id = $(this).attr("id")
-            var $appender = $("#" + $id).parents()[1]
-            $($(this).parents()[1]).addClass("elevated")
+            var $container = $("#" + $id).parents()[1]
+            $($container).addClass("elevated")
             var request = $.ajax({
                 url: "/genres/" + $id,
                 method: "GET"
             });
             request.done(function(definition) {
-                $($appender).append(definition)
+                $($container).append(definition)
             });
         }
     });
@@ -56,12 +56,8 @@ $(document).ready(function($) {
             var $container = $(this).parents()[1]
             console.log($($container).hasClass("elevated"))
             if ($($container).hasClass("elevated")) {
-                console.log("Hi")
-                console.log($id)
                 sessionStorage.setItem($id, "true")
             } else {
-                console.log("Bye")
-                console.log($id)
                 sessionStorage.removeItem($id)
             }
         })
