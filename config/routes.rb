@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
   resources :genres, :only => [:index, :show] do
-    resources :selections, :only => [:create, :destroy]
+    resources :selections, :only => [:create]
+    get 'selections/delete', to: 'selections#destroy', as: 'sel_destroy'
   end
 end

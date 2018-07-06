@@ -17,20 +17,15 @@
 
 $(document).ready(function($) {
     $("table").find($(".total-image-text-container[id]")).each(function() {
-        $this = this
-        console.log($($this))
-            // if ($($this).is("#idSelector")) {
-            //     var $id = $(this).attr("id")
-            //     var $appender = $("#" + $id).parents()[1]
-            //     $($(this).parents()[1]).addClass("elevated")
-            //     var request = $.ajax({
-            //         url: "/genres/" + $id,
-            //         method: "GET"
-            //     });
-            //     request.done(function(definition) {
-            //         $($appender).append(definition)
-            //     });
-            // }
+        var $this = this
+        var $id = $(this).find(".image-text").attr("id")
+        var request = $.ajax({
+            url: "/genres/" + $id,
+            method: "GET"
+        });
+        request.done(function(definition) {
+            $($this).append(definition)
+        });
     });
     $(".image-text").click(function() {
         var $this = $(this);
@@ -60,19 +55,12 @@ $(document).ready(function($) {
                 var request = $.ajax({
                     url: "/genres/" + $id + "/selections",
                     method: "POST"
-                })
-                request.done(function(selection) {
-                    console.log(selection);
                 });
             } else {
-                if ($($container).is("#idSelector")) {
-                    $selID = $container.id
-                    sessionStorage.removeItem($id)
-                    var request = $.ajax({
-                        url: "/genres/" + $id + "/selections/" + $selID,
-                        method: "Delete"
-                    });
-                }
+                var request = $.ajax({
+                    url: "/genres/" + $id + "/selections/delete",
+                    method: "GET"
+                });
             }
         })
     })
