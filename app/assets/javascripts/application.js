@@ -16,19 +16,21 @@
 //= require_tree .
 
 $(document).ready(function($) {
-    $("table").find($(".image-text")).each(function() {
-        if (sessionStorage.getItem($(this).attr("id"))) {
-            var $id = $(this).attr("id")
-            var $appender = $("#" + $id).parents()[1]
-            $($(this).parents()[1]).addClass("elevated")
-            var request = $.ajax({
-                url: "/genres/" + $id,
-                method: "GET"
-            });
-            request.done(function(definition) {
-                $($appender).append(definition)
-            });
-        }
+    $("table").find($(".total-image-text-container[id]")).each(function() {
+        $this = this
+        console.log($($this))
+            // if ($($this).is("#idSelector")) {
+            //     var $id = $(this).attr("id")
+            //     var $appender = $("#" + $id).parents()[1]
+            //     $($(this).parents()[1]).addClass("elevated")
+            //     var request = $.ajax({
+            //         url: "/genres/" + $id,
+            //         method: "GET"
+            //     });
+            //     request.done(function(definition) {
+            //         $($appender).append(definition)
+            //     });
+            // }
     });
     $(".image-text").click(function() {
         var $this = $(this);
@@ -55,9 +57,22 @@ $(document).ready(function($) {
             var $id = $(this).attr("id")
             var $container = $(this).parents()[1]
             if ($($container).hasClass("elevated")) {
-                sessionStorage.setItem($id, "true")
+                var request = $.ajax({
+                    url: "/genres/" + $id + "/selections",
+                    method: "POST"
+                })
+                request.done(function(selection) {
+                    console.log(selection);
+                });
             } else {
-                sessionStorage.removeItem($id)
+                if ($($container).is("#idSelector")) {
+                    $selID = $container.id
+                    sessionStorage.removeItem($id)
+                    var request = $.ajax({
+                        url: "/genres/" + $id + "/selections/" + $selID,
+                        method: "Delete"
+                    });
+                }
             }
         })
     })
