@@ -30,7 +30,6 @@ $(document).ready(function($) {
     $(".image-text").click(function() {
         var $this = $(this);
         var $container = $(this).parents()[1]
-        var parents = $(this).parents()
         var $id = $this.attr("id")
         if ($($container).hasClass("elevated")) {
             $($container).children()[1].remove();

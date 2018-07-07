@@ -13,7 +13,7 @@
                     <div class = "text-container">
                         <%= image_tag(genre.image, class: 'image').html_safe%>
                         <% if genre.users.include?(current_user)%>
-                            <div class = "total-image-text-container elevated" id = "<% current_user.selections.find_by(genre_id: "#{genre.id}").id %>" >
+                            <div class = "total-image-text-container elevated" id = "<%= current_user.genres.find_by(id: genre.id).id %>" >
                         <% else %>
                             <div class = "total-image-text-container">
                         <% end %>
