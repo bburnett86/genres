@@ -1,24 +1,22 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
 * Ruby version
+2.3.3
+
+* Rails version
+5.2.0
 
 * System dependencies
-
-* Configuration
+Created for Mac OS environment
 
 * Database creation
+rake db:create
 
 * Database initialization
+rake db:migrate && rake db:seed
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
-
-* ...
+In the CLI enter directory folder for this app and run rails s to start server.
+On your internet browser go to localhost:3000
+If you would like to observe the nature of the objects, in the CLI enter the directory folder for this app and run rails c.
